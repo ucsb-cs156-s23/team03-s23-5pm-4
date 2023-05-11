@@ -17,5 +17,5 @@ Bring over backend crud files for Transport from team02
          `transports` listed in the table.
       3. Use `\q` to quit
 
-- [ ] The backend POST,GET,PUT,DELETE endpoints for `Restauarant` all work properly in Swagger.
+- [ ] The backend POST,GET,PUT,DELETE endpoints for `Transport` all work properly in Swagger.
 
