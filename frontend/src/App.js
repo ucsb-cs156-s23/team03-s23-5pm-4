@@ -11,6 +11,10 @@ import UCSBDatesIndexPage from "main/pages/UCSBDates/UCSBDatesIndexPage";
 import UCSBDatesCreatePage from "main/pages/UCSBDates/UCSBDatesCreatePage";
 import UCSBDatesEditPage from "main/pages/UCSBDates/UCSBDatesEditPage";
 
+import AttractionCreatePage from "main/pages/Attractions/AttractionCreatePage";
+import AttractionEditPage from "main/pages/Attractions/AttractionEditPage";
+import AttractionIndexPage from "main/pages/Attractions/AttractionIndexPage";
+import AttractionDetailsPage from "main/pages/Attractions/AttractionDetailsPage";
 
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
@@ -46,6 +50,20 @@ function App() {
             </>
           )
         }
+
+{
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/attractions/create" element={<AttractionCreatePage />} />
+              <Route exact path="/attractions/edit/:id" element={<AttractionEditPage />} />
+              <Route exact path="/attractions/details/:id" element={<AttractionDetailsPage />} />
+              <Route exact path="/attractions/" element={<AttractionIndexPage />} />
+            </>
+          )
+        }
+
+
+
         {
           hasRole(currentUser, "ROLE_ADMIN") && (
             <>
