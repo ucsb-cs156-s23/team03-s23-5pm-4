@@ -32,7 +32,7 @@ jest.mock('main/utils/attractionUtils', () => {
 describe("AttractionDetailsPage tests", () => {
 
     const queryClient = new QueryClient();
-    test("renders without crashing", () => {
+    test("renders without crashing", async () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
