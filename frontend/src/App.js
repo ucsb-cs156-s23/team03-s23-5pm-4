@@ -16,10 +16,17 @@ import AttractionDetailsPage from "main/pages/Attractions/AttractionDetailsPage"
 import AttractionEditPage from "main/pages/Attractions/AttractionEditPage";
 import AttractionIndexPage from "main/pages/Attractions/AttractionIndexPage";
 
+
+import TransportCreatePage from "main/pages/Transports/TransportCreatePage";
+import TransportDetailsPage from "main/pages/Transports/TransportDetailsPage";
+import TransportEditPage from "main/pages/Transports/TransportEditPage";
+import TransportIndexPage from "main/pages/Transports/TransportIndexPage";
+
 import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
 import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
 import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
 import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage";
+
 
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
@@ -60,6 +67,18 @@ function App() {
         {
           hasRole(currentUser, "ROLE_USER") && (
             <>
+
+              <Route exact path="/transport/create" element={<TransportCreatePage />} />
+              <Route exact path="/transport/edit/:id" element={<TransportEditPage />} />
+              <Route exact path="/transport/details/:id" element={<TransportDetailsPage />} />
+              <Route exact path="/transport/" element={<TransportIndexPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+
               <Route exact path="/restaurants/create" element={<RestaurantCreatePage />} />
               <Route exact path="/restaurants/edit/:id" element={<RestaurantEditPage />} />
               <Route exact path="/restaurants/details/:id" element={<RestaurantDetailsPage />} />
@@ -67,6 +86,7 @@ function App() {
             </>
           )
         }
+
         {
           hasRole(currentUser, "ROLE_USER") && (
             <>
