@@ -101,8 +101,8 @@ describe("AppNavbar tests", () => {
         await findByTestId("appnavbar-attractions-dropdown");
     });
 
-    test("renders the transport menu correctly", async () => {
 
+    test("renders the transport menu correctly", async () => {
         const currentUser = currentUserFixtures.userOnly;
         const systemInfo = systemInfoFixtures.showingBoth;
 
@@ -117,6 +117,27 @@ describe("AppNavbar tests", () => {
         );
 
         await findByTestId("appnavbar-transport-dropdown");
+
+    });
+
+
+
+    test("renders the restaurants menu correctly", async () => {
+        const currentUser = currentUserFixtures.userOnly;
+        const systemInfo = systemInfoFixtures.showingBoth;
+
+        const doLogin = jest.fn();
+
+        const {getByTestId, findByTestId } = render(
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter>
+                    <AppNavbar currentUser={currentUser} systemInfo={systemInfo} doLogin={doLogin} />
+                </MemoryRouter>
+            </QueryClientProvider>
+        );
+
+        await findByTestId("appnavbar-restaurants-dropdown");
+
     });
 
     test("renders the AppNavbarLocalhost when on http://localhost:3000", async () => {
