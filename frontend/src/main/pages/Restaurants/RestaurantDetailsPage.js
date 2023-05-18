@@ -1,6 +1,10 @@
+import React from 'react'
+import { useBackend } from 'main/utils/useBackend';
+
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import { useParams } from "react-router-dom";
 import RestaurantTable from 'main/components/Restaurants/RestaurantTable';
+import { useParams } from "react-router-dom";
+
 
 export default function RestaurantDetailsPage() {
   let { id } = useParams();
