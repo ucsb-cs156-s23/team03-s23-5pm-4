@@ -67,12 +67,10 @@ describe("TransportCreatePage tests", () => {
         const createButton = screen.getByTestId("TransportForm-submit");
         expect(createButton).toBeInTheDocument();
 
-        await act(async () => {
-            fireEvent.change(nameInput, { target: { value: 'Inkstriker' } })
-            fireEvent.change(modeInput, { target: { value: 'kart' } })
-            fireEvent.change(costInput, { target: { value: '1000' } })
-            fireEvent.click(createButton);
-        });
+        fireEvent.change(nameInput, { target: { value: 'Inkstriker' } })
+        fireEvent.change(modeInput, { target: { value: 'kart' } })
+        fireEvent.change(costInput, { target: { value: '1000' } })
+        fireEvent.click(createButton);
 
         await waitFor(() => expect(mockAdd).toHaveBeenCalled());
         await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/transports"));

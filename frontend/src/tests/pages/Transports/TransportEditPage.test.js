@@ -98,12 +98,10 @@ describe("TransportEditPage tests", () => {
         const updateButton = screen.getByText("Update");
         expect(updateButton).toBeInTheDocument();
 
-        await act(async () => {
-            fireEvent.change(nameInput, { target: { value: 'Mr. Scooty' } })
-            fireEvent.change(modeInput, { target: { value: 'scooter' } })
-            fireEvent.change(costInput, { target: { value: '100000' } })
-            fireEvent.click(updateButton);
-        });
+        fireEvent.change(nameInput, { target: { value: 'Mr. Scooty' } })
+        fireEvent.change(modeInput, { target: { value: 'scooter' } })
+        fireEvent.change(costInput, { target: { value: '100000' } })
+        fireEvent.click(updateButton);
 
         await waitFor(() => expect(mockUpdate).toHaveBeenCalled());
         await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith("/transports"));
