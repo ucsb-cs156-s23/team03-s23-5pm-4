@@ -90,7 +90,6 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 Restaurant restaurant = Restaurant.builder()
                                 .name("bridge")
-                                .details("123 rd")
                                 .description("red")
                                 .build();
 
@@ -137,7 +136,6 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 Restaurant restaurant1 = Restaurant.builder()
                                 .name("bridge")
-                                .details("123 rd")
                                 .description("red")
                                 .build();
 
@@ -145,7 +143,6 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 Restaurant restaurant2 = Restaurant.builder()
                                 .name("building")
-                                .details("456 ln")
                                 .description("tall")
                                 .build();
 
@@ -173,7 +170,6 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 Restaurant restaurant1 = Restaurant.builder()
                                 .name("townhall")
-                                .details("road")
                                 .description("blue")
                                 .build();
 
@@ -181,7 +177,7 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/restaurant/post?name=townhall&details=road&description=blue")
+                                post("/api/restaurant/post?name=townhall&description=blue")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -201,7 +197,6 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 Restaurant restaurant1 = Restaurant.builder()
                                 .name("bridge")
-                                .details("123 rd")
                                 .description("red")
                                 .build();
 
@@ -251,13 +246,11 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 Restaurant restaurantOrig = Restaurant.builder()
                                 .name("bridge")
-                                .details("123 rd")
                                 .description("red")
                                 .build();
 
                 Restaurant restaurantEdited = Restaurant.builder()
                                 .name("building")
-                                .details("546")
                                 .description("tall")
                                 .build();
 
@@ -290,7 +283,6 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 Restaurant restaurantEdited = Restaurant.builder()
                                 .name("bridge")
-                                .details("123 rd")
                                 .description("red")
                                 .build();
 

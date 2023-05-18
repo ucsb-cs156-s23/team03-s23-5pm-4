@@ -59,8 +59,7 @@ public class RestaurantController extends ApiController {
     @PostMapping("/post")
     public Restaurant postRestaurant(
             @ApiParam("name") @RequestParam String name,
-            @ApiParam("description") @RequestParam String description,
-            @ApiParam("details") @RequestParam String details)
+            @ApiParam("description") @RequestParam String description)
             throws JsonProcessingException {
 
         // For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -69,7 +68,6 @@ public class RestaurantController extends ApiController {
         //log.info("localDateTime={}", localDateTime);
 
         Restaurant restaurants = new Restaurant();
-        restaurants.setDetails(details);
         restaurants.setName(name);
         restaurants.setDescription(description);
 
@@ -100,7 +98,6 @@ public class RestaurantController extends ApiController {
         Restaurant restaurant = restaurantsRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(Restaurant.class, id));
 
-        restaurant.setDetails(incoming.getDetails());
         restaurant.setName(incoming.getName());
         restaurant.setDescription(incoming.getDescription());
 

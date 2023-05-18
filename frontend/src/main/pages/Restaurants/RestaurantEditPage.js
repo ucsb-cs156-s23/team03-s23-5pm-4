@@ -13,10 +13,10 @@ export default function RestaurantEditPage() {
     const { data: restaurant, error, status } =
     useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
-      [`/api/restaurants?id=${id}`],
+      [`/api/restaurant?id=${id}`],
       {  // Stryker disable next-line all : GET is the default, so changing this to "" doesn't introduce a bug
         method: "GET",
-        url: `/api/restaurants`,
+        url: `/api/restaurant`,
         params: {
           id
         }
@@ -24,15 +24,14 @@ export default function RestaurantEditPage() {
     );
 
     const objectToAxiosPutParams = (restaurant) => ({
-        url: "/api/restaurants",
+        url: "/api/restaurant",
         method: "PUT",
         params: {
           id: restaurant.id,
         },
         data: {
           name: restaurant.name,
-          description: restaurant.description,
-          details: restaurant.details
+          description: restaurant.description
         }
       });
 
@@ -44,7 +43,7 @@ export default function RestaurantEditPage() {
         objectToAxiosPutParams,
         { onSuccess },
         // Stryker disable next-line all : hard to set up test for caching
-        [`/api/restaurants?id=${id}`]
+        [`/api/restaurant?id=${id}`]
     );
 
     const { isSuccess } = mutation
@@ -54,7 +53,7 @@ export default function RestaurantEditPage() {
     }
 
     if (isSuccess) {
-        return <Navigate to="/restaurants/list" />
+        return <Navigate to="/restaurants" />
     }
 
     return (
