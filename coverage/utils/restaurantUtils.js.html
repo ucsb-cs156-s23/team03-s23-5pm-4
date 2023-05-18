@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for utils/transportUtils.js</title>
+    <title>Code coverage report for utils/restaurantUtils.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">utils</a> transportUtils.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">utils</a> restaurantUtils.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>52/52</span>
+                <span class='fraction'>53/53</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>49/49</span>
+                <span class='fraction'>50/50</span>
             </div>
         
             
@@ -154,7 +154,8 @@
 <a name='L89'></a><a href='#L89'>89</a>
 <a name='L90'></a><a href='#L90'>90</a>
 <a name='L91'></a><a href='#L91'>91</a>
-<a name='L92'></a><a href='#L92'>92</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
@@ -197,6 +198,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -245,86 +247,87 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// get transportation services from local storage
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// get restaurants from local storage
 const get = () =&gt; {
-    const transportValue = localStorage.getItem("transport");
-    if (transportValue === undefined) {
-        const transportCollection = { nextId: 1, transports: [] }
-        return set(transportCollection);
+    const restaurantValue = localStorage.getItem("restaurants");
+    if (restaurantValue === undefined) {
+        const restaurantCollection = { nextId: 1, restaurants: [] }
+        return set(restaurantCollection);
     }
-    const transportCollection = JSON.parse(transportValue);
-    if (transportCollection === null) {
-        const transportCollection = { nextId: 1, transports: [] }
-        return set(transportCollection);
+    const restaurantCollection = JSON.parse(restaurantValue);
+    if (restaurantCollection === null) {
+        const restaurantCollection = { nextId: 1, restaurants: [] }
+        return set(restaurantCollection);
     }
-    return transportCollection;
+    return restaurantCollection;
 };
 &nbsp;
 const getById = (id) =&gt; {
     if (id === undefined) {
         return { "error": "id is a required parameter" };
     }
-    const transportCollection = get();
-    const transports = transportCollection.transports;
+    const restaurantCollection = get();
+    const restaurants = restaurantCollection.restaurants;
 &nbsp;
     /* eslint-disable-next-line eqeqeq */ // we really do want == here, not ===
-    const index = transports.findIndex((r) =&gt; r.id == id);
+    const index = restaurants.findIndex((r) =&gt; r.id == id);
     if (index === -1) {
-        return { "error": `transportation service with id ${id} not found` };
+        return { "error": `restaurant with id ${id} not found` };
     }
-    return { transport: transports[index] };
+    return { restaurant: restaurants[index] };
 }
 &nbsp;
-// set transportation services in local storage
-const set = (transportCollection) =&gt; {
-    localStorage.setItem("transport", JSON.stringify(transportCollection));
-    return transportCollection;
+// set restaurants in local storage
+const set = (restaurantCollection) =&gt; {
+    localStorage.setItem("restaurants", JSON.stringify(restaurantCollection));
+    return restaurantCollection;
 };
 &nbsp;
-// add a transportation service to local storage
-const add = (transport) =&gt; {
-    const transportCollection = get();
-    transport = { ...transport, id: transportCollection.nextId++ };
-    transportCollection.transports.push(transport);
-    set(transportCollection);
-    return transport;
+// add a restaurant to local storage
+const add = (restaurant) =&gt; {
+    const restaurantCollection = get();
+    restaurant = { ...restaurant, id: restaurantCollection.nextId };
+    restaurantCollection.nextId++;
+    restaurantCollection.restaurants.push(restaurant);
+    set(restaurantCollection);
+    return restaurant;
 };
 &nbsp;
-// update a transportation service in local storage
-const update = (transport) =&gt; {
-    const transportCollection = get();
+// update a restaurant in local storage
+const update = (restaurant) =&gt; {
+    const restaurantCollection = get();
 &nbsp;
-    const transports = transportCollection.transports;
+    const restaurants = restaurantCollection.restaurants;
 &nbsp;
     /* eslint-disable-next-line eqeqeq */ // we really do want == here, not ===
-    const index = transports.findIndex((r) =&gt; r.id == transport.id);
+    const index = restaurants.findIndex((r) =&gt; r.id == restaurant.id);
     if (index === -1) {
-        return { "error": `transportation service with id ${transport.id} not found` };
+        return { "error": `restaurant with id ${restaurant.id} not found` };
     }
-    transports[index] = transport;
-    set(transportCollection);
-    return { transportCollection: transportCollection };
+    restaurants[index] = restaurant;
+    set(restaurantCollection);
+    return { restaurantCollection: restaurantCollection };
 };
 &nbsp;
-// delete a transportation service from local storage
+// delete a restaurant from local storage
 const del = (id) =&gt; {
     if (id === undefined) {
         return { "error": "id is a required parameter" };
     }
-    const transportCollection = get();
-    const transports = transportCollection.transports;
+    const restaurantCollection = get();
+    const restaurants = restaurantCollection.restaurants;
 &nbsp;
     /* eslint-disable-next-line eqeqeq */ // we really do want == here, not ===
-    const index = transports.findIndex((r) =&gt; r.id == id);
+    const index = restaurants.findIndex((r) =&gt; r.id == id);
     if (index === -1) {
-        return { "error": `transportation service with id ${id} not found` };
+        return { "error": `restaurant with id ${id} not found` };
     }
-    transports.splice(index, 1);
-    set(transportCollection);
-    return { transportCollection: transportCollection };
+    restaurants.splice(index, 1);
+    set(restaurantCollection);
+    return { restaurantCollection: restaurantCollection };
 };
 &nbsp;
-const transportUtils = {
+const restaurantUtils = {
     get,
     getById,
     add,
@@ -332,7 +335,7 @@ const transportUtils = {
     del
 };
 &nbsp;
-export { transportUtils };
+export { restaurantUtils };
 &nbsp;
 &nbsp;
 &nbsp;
@@ -343,7 +346,7 @@ export { transportUtils };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Thu May 18 2023 11:43:07 GMT-0700 (Pacific Daylight Time)
+                at Thu May 18 2023 12:53:17 GMT-0700 (Pacific Daylight Time)
             </div>
         <script src="../prettify.js"></script>
         <script>
