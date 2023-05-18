@@ -16,6 +16,11 @@ import AttractionDetailsPage from "main/pages/Attractions/AttractionDetailsPage"
 import AttractionEditPage from "main/pages/Attractions/AttractionEditPage";
 import AttractionIndexPage from "main/pages/Attractions/AttractionIndexPage";
 
+import RestaurantCreatePage from "main/pages/Restaurants/RestaurantCreatePage";
+import RestaurantEditPage from "main/pages/Restaurants/RestaurantEditPage";
+import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
+import RestaurantDetailsPage from "main/pages/Restaurants/RestaurantDetailsPage";
+
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -52,7 +57,16 @@ function App() {
             </>
           )
         }
-
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/restaurants/create" element={<RestaurantCreatePage />} />
+              <Route exact path="/restaurants/edit/:id" element={<RestaurantEditPage />} />
+              <Route exact path="/restaurants/details/:id" element={<RestaurantDetailsPage />} />
+              <Route exact path="/restaurants/" element={<RestaurantIndexPage />} />
+            </>
+          )
+        }
         {
           hasRole(currentUser, "ROLE_USER") && (
             <>
