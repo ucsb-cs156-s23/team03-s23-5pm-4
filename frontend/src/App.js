@@ -16,6 +16,11 @@ import AttractionDetailsPage from "main/pages/Attractions/AttractionDetailsPage"
 import AttractionEditPage from "main/pages/Attractions/AttractionEditPage";
 import AttractionIndexPage from "main/pages/Attractions/AttractionIndexPage";
 
+import TransportCreatePage from "main/pages/Transports/TransportCreatePage";
+import TransportDetailsPage from "main/pages/Transports/TransportDetailsPage";
+import TransportEditPage from "main/pages/Transports/TransportEditPage";
+import TransportIndexPage from "main/pages/Transports/TransportIndexPage";
+
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -49,6 +54,16 @@ function App() {
               <Route exact path="/attractions/edit/:id" element={<AttractionEditPage />} />
               <Route exact path="/attractions/details/:id" element={<AttractionDetailsPage />} />
               <Route exact path="/attractions/" element={<AttractionIndexPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/transport/create" element={<TransportCreatePage />} />
+              <Route exact path="/transport/edit/:id" element={<TransportEditPage />} />
+              <Route exact path="/transport/details/:id" element={<TransportDetailsPage />} />
+              <Route exact path="/transport/" element={<TransportIndexPage />} />
             </>
           )
         }
