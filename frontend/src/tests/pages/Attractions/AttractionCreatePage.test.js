@@ -53,14 +53,14 @@ describe("AttractionCreatePage tests", () => {
     test("when you fill in the form and hit submit, it makes a request to the backend", async () => {
 
         const queryClient = new QueryClient();
-        const transport = {
+        const attraction = {
             id: 17,
             name: "Inkstriker",
             description: "kart",
             address: "1000"
         };
 
-        axiosMock.onPost("/api/attractions/post").reply( 202, transport );
+        axiosMock.onPost("/api/attractions/post").reply( 202, attraction );
 
         const { getByTestId } = render(
             <QueryClientProvider client={queryClient}>
@@ -97,7 +97,7 @@ describe("AttractionCreatePage tests", () => {
         });
 
         expect(mockToast).toBeCalledWith("New attractions Created - id: 17 name: Inkstriker");
-        expect(mockNavigate).toBeCalledWith({ "to": "/attractions/list" });
+        expect(mockNavigate).toBeCalledWith({ "to": "/attractions/" });
     });
 
 
