@@ -24,9 +24,12 @@ import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import { useParams } from "react-router-dom";
 import TransportTable from 'main/components/Transports/TransportTable';
 import { useBackend } from "main/utils/useBackend";
+import { useCurrentUser } from 'main/utils/currentUser'
 
 export default function TransportDetailsPage() {
   let { id } = useParams();
+
+  const currentUser = useCurrentUser();
 
   const { data: transport, _error, _status } =
     useBackend(
@@ -46,7 +49,7 @@ export default function TransportDetailsPage() {
       <div className="pt-2">
         <h1>Transport Details</h1>
         {
-          transport && <TransportTable transports={[transport]} showButtons={false} />
+          transport && <TransportTable transports={[transport]} currentUser={currentUser} showButtons={false} />
         }
       </div>
     </BasicLayout>
