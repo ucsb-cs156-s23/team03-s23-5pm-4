@@ -4,10 +4,13 @@ import { useBackend } from 'main/utils/useBackend';
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import RestaurantTable from 'main/components/Restaurants/RestaurantTable';
 import { useParams } from "react-router-dom";
+import { useCurrentUser } from 'main/utils/currentUser'
 
 
 export default function RestaurantDetailsPage() {
   let { id } = useParams();
+
+  const currentUser = useCurrentUser();
 
   const { data: restaurant, error, status } =
     useBackend(
@@ -25,9 +28,11 @@ export default function RestaurantDetailsPage() {
   return (
     <BasicLayout>
       <div className="pt-2">
-        <h1>Restaurant Details</h1>
-        <RestaurantTable restaurants={[restaurant]} showButtons={false} />
-      </div>
+        <h1>Restaurant Details</h1> 
+        {
+          restaurant && <RestaurantTable restaurants={[restaurant]} currentUser={currentUser} showButtons={false} />
+        }
+        </div>
     </BasicLayout>
   )
 }
