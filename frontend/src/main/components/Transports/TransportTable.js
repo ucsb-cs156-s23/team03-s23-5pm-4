@@ -118,7 +118,7 @@ export default function TransportTable({ transports, currentUser }) {
         }
     ];
 
-    if (hasRole(currentUser, "ROLE_ADMIN")) {
+    if (hasRole(currentUser, "ROLE_USER")) {
         columns.push(ButtonColumn("Details", "primary", detailsCallback, "TransportTable"));
         columns.push(ButtonColumn("Edit", "primary", editCallback, "TransportTable"));
         columns.push(ButtonColumn("Delete", "danger", deleteCallback, "TransportTable"));
