@@ -76,8 +76,8 @@ import { hasRole } from "main/utils/currentUser";
 
 export default function TransportTable({
         transports,
-        showButtons = true,
-        currentUser}) {
+        currentUser,
+        showButtons = true}) {
 
     const navigate = useNavigate();
 
@@ -121,14 +121,17 @@ export default function TransportTable({
         }
     ];
 
-    if (showButtons && hasRole(currentUser, "ROLE_USER")) {
-        columns.push(ButtonColumn("Details", "primary", detailsCallback, "TransportTable"));
-        columns.push(ButtonColumn("Edit", "primary", editCallback, "TransportTable"));
-        columns.push(ButtonColumn("Delete", "danger", deleteCallback, "TransportTable"));
-    }
+    const buttonColumns = [
+        ...columns,
+        ButtonColumn("Details", "primary", detailsCallback, "TransportTable"),
+        ButtonColumn("Edit", "primary", editCallback, "TransportTable"),
+        ButtonColumn("Delete", "danger", deleteCallback, "TransportTable"),
+    ]
+
+    const columnsToDisplay = (showButtons && hasRole(currentUser, "ROLE_USER")) ? buttonColumns : columns;
 
     // Stryker disable next-line ArrayDeclaration : [columns] is a performance optimization
-    const memoizedColumns = React.useMemo(() => columns, [columns]);
+    const memoizedColumns = React.useMemo(() => columnsToDisplay, [columnsToDisplay]);
     const memoizedTransports = React.useMemo(() => transports, [transports]);
 
     return <OurTable
