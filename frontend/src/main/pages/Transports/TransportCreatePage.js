@@ -1,17 +1,42 @@
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import TransportForm from "main/components/Transports/TransportForm";
-import { useNavigate } from 'react-router-dom'
-import { transportUtils } from 'main/utils/transportUtils';
+import { Navigate/*, useNavigate */ } from 'react-router-dom'
+// import { transportUtils } from 'main/utils/transportUtils';
+import { useBackendMutation } from "main/utils/useBackend";
+import { toast } from "react-toastify";
 
 export default function TransportCreatePage() {
 
-  let navigate = useNavigate(); 
+  const objectToAxiosParams = (transport) => ({
+    url: "/api/transport/post",
+    method: "POST",
+    params: {
+      name: transport.name,
+      mode: transport.mode,
+      cost: transport.cost
+    }
+  });
 
-  const onSubmit = async (transport) => {
-    const createdTransport = transportUtils.add(transport);
-    console.log("createdTransport: " + JSON.stringify(createdTransport));
-    navigate("/transports");
-  }  
+  const onSuccess = (transport) => {
+    toast(`New transport Created - id: ${transport.id} name: ${transport.name}`);
+  }
+
+  const mutation = useBackendMutation(
+    objectToAxiosParams,
+    { onSuccess },
+    // Stryker disable next-line all : hard to set up test for caching
+    ["/api/transport/all"]
+  );
+
+  const { isSuccess } = mutation
+
+  const onSubmit = async (data) => {
+    mutation.mutate(data);
+  }
+
+  if (isSuccess) {
+    return <Navigate to="/transport/list" />
+  }
 
   return (
     <BasicLayout>
