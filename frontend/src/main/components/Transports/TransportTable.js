@@ -74,7 +74,10 @@ import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/transportUt
 import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
 
-export default function TransportTable({ transports, currentUser }) {
+export default function TransportTable({
+        transports,
+        showButtons = true,
+        currentUser}) {
 
     const navigate = useNavigate();
 
@@ -118,7 +121,7 @@ export default function TransportTable({ transports, currentUser }) {
         }
     ];
 
-    if (hasRole(currentUser, "ROLE_USER")) {
+    if (showButtons && hasRole(currentUser, "ROLE_USER")) {
         columns.push(ButtonColumn("Details", "primary", detailsCallback, "TransportTable"));
         columns.push(ButtonColumn("Edit", "primary", editCallback, "TransportTable"));
         columns.push(ButtonColumn("Delete", "danger", deleteCallback, "TransportTable"));
