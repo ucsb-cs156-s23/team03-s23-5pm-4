@@ -32,8 +32,8 @@ export default function AttractionEditPage() {
     },
     data: {
       name: attraction.name,
-      address: attraction.address,
-      description: attraction.description
+      description: attraction.description,
+      address: attraction.address
     }
   });
 
@@ -62,7 +62,9 @@ export default function AttractionEditPage() {
         <BasicLayout>
             <div className="pt-2">
                 <h1>Edit Attraction</h1>
-                <AttractionForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={response.attraction}/>
+                {attraction &&
+                <AttractionForm initialContents={attraction} submitAction={onSubmit} buttonLabel="Update" />
+                }
             </div>
         </BasicLayout>
     )
