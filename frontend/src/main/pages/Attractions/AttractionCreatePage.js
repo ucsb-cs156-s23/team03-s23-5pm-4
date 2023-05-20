@@ -35,7 +35,7 @@ export default function AttractionCreatePage() {
   }
 
   if (isSuccess) {
-    return <Navigate to="/attractions/list" />
+    return <Navigate to="/attractions/" />
   }
 
   return (
