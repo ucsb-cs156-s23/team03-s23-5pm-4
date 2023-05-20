@@ -2,6 +2,12 @@ import { render, screen, act, waitFor, fireEvent } from "@testing-library/react"
 import AttractionEditPage from "main/pages/Attractions/AttractionEditPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
+import AttractionEditPage from "main/pages/Attractions/AttractionEditPage";
+import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
+import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
+import axios from "axios";
+import AxiosMockAdapter from "axios-mock-adapter";
+
 import mockConsole from "jest-mock-console";
 
 const mockNavigate = jest.fn();
