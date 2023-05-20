@@ -35,7 +35,7 @@ export default function TransportCreatePage() {
   }
 
   if (isSuccess) {
-    return <Navigate to="/transport/list" />
+    return <Navigate to="/transport" />
   }
 
   return (
