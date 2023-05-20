@@ -97,7 +97,7 @@ describe("AttractionCreatePage tests", () => {
         });
 
         expect(mockToast).toBeCalledWith("New attraction Created - id: 17 name: Inkstriker");
-        expect(mockNavigate).toBeCalledWith({ "to": "/attractions/list" });
+        expect(mockNavigate).toBeCalledWith({ "to": "/attractions/" });
     });
 
 
