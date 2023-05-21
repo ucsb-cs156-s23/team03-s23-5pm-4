@@ -17,10 +17,10 @@ export default function RestaurantTable({ restaurants, currentUser, showButtons 
         navigate(`/restaurants/details/${cell.row.values.id}`)
     }
 
+    // Stryker disable next-line all : page refetches even without api invalidate
     const deleteMutation = useBackendMutation(
         cellToAxiosParamsDelete,
         { onSuccess: onDeleteSuccess },
-        // Stryker disable next-line page refetches even without api invalidate
         ["/api/restaurant/all"]
     );
 
