@@ -186,7 +186,7 @@ describe("TransportCreatePage tests", () => {
         });
 
         expect(mockToast).toBeCalledWith("New transport Created - id: 17 name: Inkstriker");
-        expect(mockNavigate).toBeCalledWith({ "to": "/transport/list" });
+        expect(mockNavigate).toBeCalledWith({ "to": "/transport" });
     });
 
 

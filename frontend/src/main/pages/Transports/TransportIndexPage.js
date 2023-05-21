@@ -35,7 +35,8 @@
 
 import React from 'react'
 import { useBackend } from 'main/utils/useBackend';
-
+import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import TransportTable from 'main/components/Transports/TransportTable';
 import { useCurrentUser } from 'main/utils/currentUser'
@@ -55,6 +56,9 @@ export default function TransportIndexPage() {
   return (
     <BasicLayout>
       <div className="pt-2">
+        <Button style={{ float: "right" }} as={Link} to="/transport/create">
+          Create Transport
+        </Button>
         <h1>Transports</h1>
         <TransportTable transports={transports} currentUser={currentUser} />
       </div>

@@ -124,7 +124,7 @@
 
 // });
 
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, screen, render, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import TransportIndexPage from "main/pages/Transports/TransportIndexPage";
@@ -181,7 +181,9 @@ describe("TransportIndexPage tests", () => {
             </QueryClientProvider>
         );
 
-
+        const createTransportButton = screen.getByText("Create Transport");
+        expect(createTransportButton).toBeInTheDocument();
+        expect(createTransportButton).toHaveAttribute("style", "float: right;");
     });
 
     test("renders without crashing for admin user", () => {
@@ -197,7 +199,9 @@ describe("TransportIndexPage tests", () => {
             </QueryClientProvider>
         );
 
-
+        const createTransportButton = screen.getByText("Create Transport");
+        expect(createTransportButton).toBeInTheDocument();
+        expect(createTransportButton).toHaveAttribute("style", "float: right;");
     });
 
     test("renders three transports without crashing for regular user", async () => {
@@ -216,7 +220,6 @@ describe("TransportIndexPage tests", () => {
         await waitFor(() => { expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2"); });
         expect(getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
         expect(getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("4");
-
     });
 
     test("renders three transports without crashing for admin user", async () => {
