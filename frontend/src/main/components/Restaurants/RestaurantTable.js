@@ -20,7 +20,8 @@ export default function RestaurantTable({ restaurants, currentUser, showButtons 
     const deleteMutation = useBackendMutation(
         cellToAxiosParamsDelete,
         { onSuccess: onDeleteSuccess },
-        []                                  //  was previously ["/api/restaurant/all"] but page refetches either way.
+        // Stryker disable next-line page refetches even without api invalidate
+        ["/api/restaurant/all"]
     );
 
     const deleteCallback = async (cell) => { deleteMutation.mutate(cell); }
