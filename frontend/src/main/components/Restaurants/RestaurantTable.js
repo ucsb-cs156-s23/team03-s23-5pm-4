@@ -20,7 +20,7 @@ export default function RestaurantTable({ restaurants, currentUser, showButtons 
     const deleteMutation = useBackendMutation(
         cellToAxiosParamsDelete,
         { onSuccess: onDeleteSuccess },
-        ["/api/restaurant/all"]
+        []                                  //  was previously ["/api/restaurant/all"] but page refetches either way.
     );
 
     const deleteCallback = async (cell) => { deleteMutation.mutate(cell); }
