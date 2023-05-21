@@ -300,6 +300,10 @@ describe("RestaurantTable tests", () => {
     expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
     expect(getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
 
+    const detailsButton = getByTestId(`${testId}-cell-row-0-col-Details-button`);
+    expect(detailsButton).toBeInTheDocument();
+    expect(detailsButton).toHaveClass("btn-primary");
+
     const editButton = getByTestId(`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
     expect(editButton).toHaveClass("btn-primary");
@@ -339,6 +343,10 @@ describe("RestaurantTable tests", () => {
 
     expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
     expect(getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
+
+    const detailsButton = getByTestId(`${testId}-cell-row-0-col-Details-button`);
+    expect(detailsButton).toBeInTheDocument();
+    expect(detailsButton).toHaveClass("btn-primary");
 
     const editButton = getByTestId(`${testId}-cell-row-0-col-Edit-button`);
     expect(editButton).toBeInTheDocument();
