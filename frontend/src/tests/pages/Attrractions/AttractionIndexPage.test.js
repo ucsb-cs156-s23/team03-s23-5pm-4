@@ -1,4 +1,4 @@
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, screen, render, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import AttractionIndexPage from "main/pages/Attractions/AttractionIndexPage";
@@ -55,6 +55,10 @@ describe("AttractionIndexPage tests", () => {
             </QueryClientProvider>
         );
 
+        const createTransportButton = screen.getByText("Create Attraction");
+        expect(createTransportButton).toBeInTheDocument();
+        expect(createTransportButton).toHaveAttribute("style", "float: right;");
+
 
     });
 
@@ -70,6 +74,10 @@ describe("AttractionIndexPage tests", () => {
                 </MemoryRouter>
             </QueryClientProvider>
         );
+
+        const createTransportButton = screen.getByText("Create Attraction");
+        expect(createTransportButton).toBeInTheDocument();
+        expect(createTransportButton).toHaveAttribute("style", "float: right;");
 
 
     });
