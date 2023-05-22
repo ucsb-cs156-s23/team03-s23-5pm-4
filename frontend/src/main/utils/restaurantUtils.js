@@ -1,3 +1,23 @@
+import { toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom'
+
+export function onDeleteSuccess(message) {
+    console.log(message);
+    toast(message);
+}
+
+export function cellToAxiosParamsDelete(cell) {
+    return {
+        url: "/api/restaurant",
+        method: "DELETE",
+        params: {
+            id: cell.row.values.id
+        }
+    }
+}
+
+
+/*
 // get restaurants from local storage
 const get = () => {
     const restaurantValue = localStorage.getItem("restaurants");
@@ -20,7 +40,7 @@ const getById = (id) => {
     const restaurantCollection = get();
     const restaurants = restaurantCollection.restaurants;
 
-    /* eslint-disable-next-line eqeqeq */ // we really do want == here, not ===
+    // eslint-disable-next-line eqeqeq // we really do want == here, not ===
     const index = restaurants.findIndex((r) => r.id == id);
     if (index === -1) {
         return { "error": `restaurant with id ${id} not found` };
@@ -50,7 +70,7 @@ const update = (restaurant) => {
 
     const restaurants = restaurantCollection.restaurants;
 
-    /* eslint-disable-next-line eqeqeq */ // we really do want == here, not ===
+    // eslint-disable-next-line eqeqeq // we really do want == here, not ===
     const index = restaurants.findIndex((r) => r.id == restaurant.id);
     if (index === -1) {
         return { "error": `restaurant with id ${restaurant.id} not found` };
@@ -68,7 +88,7 @@ const del = (id) => {
     const restaurantCollection = get();
     const restaurants = restaurantCollection.restaurants;
 
-    /* eslint-disable-next-line eqeqeq */ // we really do want == here, not ===
+    // eslint-disable-next-line eqeqeq // we really do want == here, not ===
     const index = restaurants.findIndex((r) => r.id == id);
     if (index === -1) {
         return { "error": `restaurant with id ${id} not found` };
@@ -87,6 +107,5 @@ const restaurantUtils = {
 };
 
 export { restaurantUtils };
-
-
+*/
 
