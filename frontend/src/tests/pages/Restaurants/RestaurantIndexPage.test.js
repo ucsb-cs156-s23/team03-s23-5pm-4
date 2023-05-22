@@ -183,7 +183,7 @@ describe("RestaurantIndexPage tests", () => {
             </QueryClientProvider>
         );
 
-        const createTransportButton = screen.getByText("Create Transport");
+        const createTransportButton = screen.getByText("Create Restaurant");
         expect(createTransportButton).toBeInTheDocument();
         expect(createTransportButton).toHaveAttribute("style", "float: right;");
 
@@ -202,7 +202,7 @@ describe("RestaurantIndexPage tests", () => {
             </QueryClientProvider>
         );
 
-        const createTransportButton = screen.getByText("Create Transport");
+        const createTransportButton = screen.getByText("Create Restaurant");
         expect(createTransportButton).toBeInTheDocument();
         expect(createTransportButton).toHaveAttribute("style", "float: right;");
 
