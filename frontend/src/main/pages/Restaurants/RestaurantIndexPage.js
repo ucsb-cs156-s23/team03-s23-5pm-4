@@ -21,8 +21,8 @@ export default function RestaurantIndexPage() {
     return (
         <BasicLayout>
           <div className="pt-2">
-            <Button style={{ float: "right" }} as={Link} to="/transport/create">
-              Create Transport
+            <Button style={{ float: "right" }} as={Link} to="/restaurants/create">
+              Create Restaurant
             </Button>
             <h1>Restaurant</h1>
             <RestaurantTable restaurants={restaurants} currentUser={currentUser} />
