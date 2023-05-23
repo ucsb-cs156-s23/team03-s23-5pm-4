@@ -126,7 +126,7 @@
 
 // });
 
-import { fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, screen, render, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import RestaurantIndexPage from "main/pages/Restaurants/RestaurantIndexPage";
@@ -183,6 +183,9 @@ describe("RestaurantIndexPage tests", () => {
             </QueryClientProvider>
         );
 
+        const createTransportButton = screen.getByText("Create Restaurant");
+        expect(createTransportButton).toBeInTheDocument();
+        expect(createTransportButton).toHaveAttribute("style", "float: right;");
 
     });
 
@@ -199,6 +202,9 @@ describe("RestaurantIndexPage tests", () => {
             </QueryClientProvider>
         );
 
+        const createTransportButton = screen.getByText("Create Restaurant");
+        expect(createTransportButton).toBeInTheDocument();
+        expect(createTransportButton).toHaveAttribute("style", "float: right;");
 
     });
 
